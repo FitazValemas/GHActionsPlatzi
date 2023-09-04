@@ -1,0 +1,33 @@
+on: [push]
+jobs:
+  paso1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: actions/download-artifact@v3
+      with:
+        name: my-artifact
+    
+    - name: Display structure of downloaded files
+      run: ls -R
+  setup-java:
+    needs: paso1
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Setup Java JDK
+        uses: actions/setup-java@v3.12.0
+        with: 
+          java-version: 8
+          java-package: jdk
+  run-java:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Compile and run Java Code
+        run: |
+          javac Entrada.java
+          java Entrada
+        
