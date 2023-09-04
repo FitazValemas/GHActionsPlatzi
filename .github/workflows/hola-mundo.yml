@@ -1,18 +1,6 @@
 on: [push]
 jobs:
-  paso1:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-
-    - uses: actions/download-artifact@v3
-      with:
-        name: my-artifact
-    
-    - name: Display structure of downloaded files
-      run: ls -R
   setup-java:
-    needs: paso1
     runs-on: ubuntu-latest
     steps: 
       - name: Setup Java JDK
