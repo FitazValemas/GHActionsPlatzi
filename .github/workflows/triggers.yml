@@ -1,0 +1,13 @@
+name: clase triggers
+on: [push, status, create]
+jobs: 
+  run-java:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Compile and run Java Code
+        run: |
+          javac Entrada.java
+          java Entrada 
